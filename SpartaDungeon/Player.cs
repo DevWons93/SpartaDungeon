@@ -12,6 +12,7 @@ namespace SpartaDungeon
         #region Field
         private string _name;
         private int _level;
+        private int _exp;
         private Class _playerClass;
         private float _attack;
         private float _defence;
@@ -19,7 +20,7 @@ namespace SpartaDungeon
         private float _defenseOfGears;
         private int _healthPoint;
         private int _gold;
-        private List<Gear> _gearList;
+        private List<Gear> gearList;
         private int _equipFlag;
         #endregion
 
@@ -28,13 +29,14 @@ namespace SpartaDungeon
             this.Name = name;
             this.PlayerClass = playerClass;
             this.Level = 1;
+            this.Exp = 0;
             this.ATK = 10f;
             this.DEF = 5f;
             this.ATKOfGears = 0f;
             this.DEFOfGears = 0f;
             this.HP = 100;
-            this.Gold = 15000;
-            this._gearList = new List<Gear>();
+            this.Gold = 1500;
+            this.gearList = new List<Gear>();
             this._equipFlag = 0;
         }
 
@@ -48,7 +50,33 @@ namespace SpartaDungeon
         public int Level
         {
             get { return _level; }
-            set { _level = value; }
+            set 
+            {
+                int inc = value - _level;
+                _level = value;
+                this.ATK += 0.5f * inc;
+                this.DEF += inc;
+            }
+        }
+
+        public int Exp
+        {
+            get { return _exp; }
+            set 
+            {
+                if (value > this.Level * 100)
+                {
+                    _exp = value;
+                    while (_exp > this.Level * 100)
+                    {
+                        _exp -= this.Level * 100;
+                        this.Level++;                        
+                    }                    
+                }
+
+                else
+                    _exp = value;
+            }
         }
 
         public Class PlayerClass
@@ -98,26 +126,26 @@ namespace SpartaDungeon
         #region Method
         public int GearCount()
         {
-            return this._gearList.Count;
+            return this.gearList.Count;
         }
 
         public List<Gear> CopyGearList()
         {
             List<Gear> list = new List<Gear>();
-            list = this._gearList;
+            list = this.gearList;
             return list;
         }
 
         public void GetItem(Item item)
         {
             Gear gear = new Gear(item.Name, item.ATK, item.DEF, item.Info, item.Price,item.GearType);
-            this._gearList.Add(gear);
+            this.gearList.Add(gear);
         }
 
         public void EquipItem(int num)
         {
-            Gear item = this._gearList[num];
-            List<Gear> list = this._gearList.FindAll(x => x.IsEquip);
+            Gear item = this.gearList[num];
+            List<Gear> list = this.gearList.FindAll(x => x.IsEquip);
 
             // 장비를 장착 중 일때           
             if (item.IsEquip)
@@ -145,7 +173,7 @@ namespace SpartaDungeon
 
         public string SellItem(int num)
         {
-            Gear item = this._gearList[num];            
+            Gear item = this.gearList[num];            
 
             // 장비를 장착 중 일때           
             if (item.IsEquip)
@@ -155,7 +183,7 @@ namespace SpartaDungeon
                 CalcEquipmentStatus(item);                
             }
             this.Gold += (int)(item.Price * 0.85f);
-            this._gearList.RemoveAt(num);
+            this.gearList.RemoveAt(num);
             return item.Name;
         }
 

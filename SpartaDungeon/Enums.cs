@@ -31,8 +31,10 @@ namespace SpartaDungeon
         Normal,
         Error,
         SoldOut,
-        SuccesButGoods,
+        SuccesBuyGoods,
         NotEnoughGold,
+        NotEnoughHP,
+        FullHP,
         GetRest
     }
 }

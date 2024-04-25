@@ -40,37 +40,37 @@ namespace SpartaDungeon
         public string Name
         {
             get { return _name; }
-            private set { _name = value; }
+            set { _name = value; }
         }
 
         public float ATK
         {
             get { return _attack; }
-            private set { _attack = value; }
+            set { _attack = value; }
         }
 
         public float DEF
         {
             get { return _defence; }
-            private set { _defence = value; }
+            set { _defence = value; }
         }
 
         public string Info
         {
             get { return _info; }
-            private set { _info = value; }
+            set { _info = value; }
         }
 
         public int Price
         {
             get { return _price; }
-            private set { _price = value; }
+            set { _price = value; }
         }
 
         public ItemType GearType
         {
             get { return _gearType; }
-            private set { _gearType = value; }
+            set { _gearType = value; }
         }
 
         #endregion

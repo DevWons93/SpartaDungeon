@@ -4,6 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
+using System.Linq;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace SpartaDungeon
 {
@@ -44,6 +48,31 @@ namespace SpartaDungeon
             #endregion
         }
 
+        public void SaveData()
+        {
+            JsonFormat json = new JsonFormat();
+            json.Player = player;
+            json.Flag = player.GetFlag();
+            json.Goods = goodsList; 
+            json.Gears = player.CopyGearList();
+            string fileName = "../../../Resource/SaveFile.json";
+            string jsonString = JsonConvert.SerializeObject(json);
+            File.WriteAllText(fileName, jsonString);
+        }
+
+        public void LoadData()
+        {            
+            string fileName = "../../../Resource/SaveFile.json";
+            string jsonString = File.ReadAllText(fileName);
+            JObject jobj = JObject.Parse(jsonString);
+            //JsonFormat json = JsonSerializer.Deserialize<JsonFormat>(jsonString);
+
+            player = JsonConvert.DeserializeObject<Player>(jobj["Player"].ToString());
+            goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());
+            List<Gear> gears = JsonConvert.DeserializeObject<List<Gear>>(jobj["Gears"].ToString());
+            player.LoadGear(gears);
+        }        
+
         public void StartGame()
         {
             int? keyInput = 0;
@@ -74,6 +103,14 @@ namespace SpartaDungeon
                         break;
                     case 5:
                         this.GetRest();
+                        message = MessageType.Normal;
+                        break;
+                    case 6:
+                        this.DisplaySuccesSave();
+                        message = MessageType.Normal;
+                        break;
+                    case 7:
+                        this.DisplaySuccesLoad();
                         message = MessageType.Normal;
                         break;
                     default:
@@ -372,6 +409,41 @@ namespace SpartaDungeon
                         message = MessageType.Error;
                         break;
                 }
+            }
+            while (true);
+        }
+
+        public void DisplaySuccesSave()
+        {
+            int? keyInput = 0;
+            MessageType message = MessageType.Normal;
+
+            do
+            {
+                vc.ViewSave();
+                keyInput = vc.ViewSelectMenu(message);
+
+                this.SaveData();
+
+                if (keyInput == 0) return;
+                message = MessageType.Error;
+            }
+            while (true);
+        }
+        public void DisplaySuccesLoad()
+        {
+            int? keyInput = 0;
+            MessageType message = MessageType.Normal;
+
+            do
+            {
+                vc.ViewLoad();
+                keyInput = vc.ViewSelectMenu(message);
+
+                this.LoadData();
+
+                if (keyInput == 0) return;
+                message = MessageType.Error;
             }
             while (true);
         }

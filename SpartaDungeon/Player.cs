@@ -200,6 +200,35 @@ namespace SpartaDungeon
                 this.DEFOfGears -= gear.DEF;
             }
         }
+
+        public int GetFlag()
+        {
+            return _equipFlag;
+        }
+
+        public void LoadGear(List<Gear> Gears)
+        {
+            for(int i=0;i<this.gearList.Count;i++)
+            {
+                Gear gear = this.gearList[i];
+                if(gear.IsEquip)
+                {
+                    this.EquipItem(i);
+                }
+            }
+
+            gearList = Gears;
+
+            for (int i=0;i<Gears.Count;i++)
+            {
+                Gear gear = Gears[i];
+                if (gear.IsEquip)
+                {
+                    this.CalcEquipmentStatus(gear);
+                    this._equipFlag ^= (int)gear.GearType;
+                }
+            }            
+        }
         #endregion
     }
 }

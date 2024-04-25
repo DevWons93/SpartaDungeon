@@ -55,8 +55,8 @@ namespace SpartaDungeon
             Console.Clear();
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
-            Console.WriteLine("1. 상태 보기\r\n2. 인벤토리\r\n3. 상점\r\n4. 던전 입장\r\n5. 휴식하기\r\n");
-            this.cursurPoint = 9;
+            Console.WriteLine("1. 상태 보기\r\n2. 인벤토리\r\n3. 상점\r\n4. 던전 입장\r\n5. 휴식하기\r\n6. 저장하기\r\n7. 불러오기\r\n");
+            this.cursurPoint = 11;
         }
 
         public void ViewyStatus(Player player)
@@ -222,6 +222,21 @@ namespace SpartaDungeon
             Console.WriteLine($"500 G 를 내면 체력을 회복할 수 있습니다. (보유 골드 : {player.Gold} G)\n");            
             Console.WriteLine("1. 휴식하기\r\n0. 나가기\n");
             this.cursurPoint = 5;
+        }
+
+        public void ViewSave()
+        {
+            Console.Clear();
+            Console.WriteLine("게임을 저장하였습니다.\n");
+            Console.WriteLine("0. 나가기\n");
+            this.cursurPoint = 4;
+        }
+        public void ViewLoad()
+        {
+            Console.Clear();
+            Console.WriteLine("게임을 로드하였습니다.\n");
+            Console.WriteLine("0. 나가기\n");
+            this.cursurPoint = 4;
         }
     }
 }

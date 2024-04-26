@@ -418,12 +418,12 @@ namespace SpartaDungeon
             int? keyInput = 0;
             MessageType message = MessageType.Normal;
 
+            this.SaveData();
+
             do
             {
                 vc.ViewSave();
                 keyInput = vc.ViewSelectMenu(message);
-
-                this.SaveData();
 
                 if (keyInput == 0) return;
                 message = MessageType.Error;
@@ -435,13 +435,13 @@ namespace SpartaDungeon
         {
             int? keyInput = 0;
             MessageType message = MessageType.Normal;
+            
+            this.LoadData();
 
             do
             {
                 vc.ViewLoad();
                 keyInput = vc.ViewSelectMenu(message);
-
-                this.LoadData();
 
                 if (keyInput == 0) return;
                 message = MessageType.Error;

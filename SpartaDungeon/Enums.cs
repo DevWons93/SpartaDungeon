@@ -26,7 +26,7 @@ namespace SpartaDungeon
         Armor = 1 << 1,
         Boots = 1 << 2
     }
-
+        
     public enum MessageType
     {
         Normal,

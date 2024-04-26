@@ -342,6 +342,7 @@ namespace SpartaDungeon
             Random random = new Random();
             int fail = random.Next(0, 100);
             string name = dg.Name;
+            int prevHP = player.HP;
             int damage;
             int reward;
             int exp;
@@ -361,19 +362,19 @@ namespace SpartaDungeon
 
             int hpTakenDamage = player.HP > damage ? player.HP - damage : 0;
 
+            player.HP = hpTakenDamage;
+            player.Gold += reward;
+            player.Exp += exp;
+
             do
             {
-                vc.ViewDungeonClear(name, hpTakenDamage, reward, player);
+                vc.ViewDungeonClear(name, prevHP, reward, player);
                 keyInput = vc.ViewSelectMenu(message);
 
                 if (keyInput == 0) break;
                 message = MessageType.Error;
 
             } while (true);
-
-            player.HP = hpTakenDamage;
-            player.Gold += reward;
-            player.Exp += exp;
         }
 
         public void GetRest()

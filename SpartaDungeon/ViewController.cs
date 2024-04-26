@@ -201,17 +201,17 @@ namespace SpartaDungeon
             this.cursurPoint = 4 + dungeons.Count;
         }
 
-        public void ViewDungeonClear(string dungeonName,int damage, int reward, Player player)
+        public void ViewDungeonClear(string dungeonName, int hp, int reward, Player player)
         {
             Console.Clear();
-            if (reward > 0)  
+            if (reward > 0)
                 Console.WriteLine($"축하합니다!!\r\n{dungeonName} 던전을 클리어 하였습니다.\n");
             else
                 Console.WriteLine($"{dungeonName} 던전 클리어에 실패 하셨습니다!!\r\n다시 도전해 보세요\n");
 
-            Console.WriteLine("[탐험 결과]");            
-            Console.WriteLine($"체력 {player.HP} -> {damage}");
-            Console.WriteLine($"Gold {player.Gold} G -> {player.Gold + reward} G \n");
+            Console.WriteLine("[탐험 결과]");
+            Console.WriteLine($"체력 {hp} -> {player.HP}");
+            Console.WriteLine($"Gold {player.Gold - reward} G -> {player.Gold} G \n");
             Console.WriteLine("0. 나가기\n");
             this.cursurPoint = 9;
         }

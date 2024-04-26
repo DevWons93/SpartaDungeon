@@ -231,6 +231,7 @@ namespace SpartaDungeon
             Console.WriteLine("0. 나가기\n");
             this.cursurPoint = 4;
         }
+
         public void ViewLoad()
         {
             Console.Clear();

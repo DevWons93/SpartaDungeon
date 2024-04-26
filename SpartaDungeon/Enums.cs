@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon
 {
-    // 직업 종류 열거형
+    // 직업 종류 열거형    
     public enum Class
     {
         WARRIOR, // 전사
@@ -19,11 +19,12 @@ namespace SpartaDungeon
     }
 
     // 장비 유형 열거형
+    [Flags]
     public enum ItemType
     {
-        Weapon = 1,
-        Armor = 2,
-        Boots = 4
+        Weapon = 1 << 0,
+        Armor = 1 << 1,
+        Boots = 1 << 2
     }
 
     public enum MessageType

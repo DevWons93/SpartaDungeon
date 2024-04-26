@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,10 +68,11 @@ namespace SpartaDungeon
             set { _price = value; }
         }
 
+        [JsonProperty]
         public ItemType GearType
         {
             get { return _gearType; }
-            set { _gearType = value; }
+            private set { _gearType = value; }
         }
 
         #endregion

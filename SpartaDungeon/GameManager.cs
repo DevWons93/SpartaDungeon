@@ -68,7 +68,7 @@ namespace SpartaDungeon
             //JsonFormat json = JsonSerializer.Deserialize<JsonFormat>(jsonString);
 
             player = JsonConvert.DeserializeObject<Player>(jobj["Player"].ToString());
-            goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());
+            goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());            
             List<Gear> gears = JsonConvert.DeserializeObject<List<Gear>>(jobj["Gears"].ToString());
             player.LoadGear(gears);
         }        
@@ -430,6 +430,7 @@ namespace SpartaDungeon
             }
             while (true);
         }
+
         public void DisplaySuccesLoad()
         {
             int? keyInput = 0;

@@ -151,7 +151,7 @@ namespace SpartaDungeon
             if (item.IsEquip)
             {
                 item.IsEquip = false;
-                this._equipFlag ^= (int)item.GearType;
+                this._equipFlag ^= (int)item.GearType;  
                 CalcEquipmentStatus(item);
             }
             // 장비를 장착 중이지 않을 때

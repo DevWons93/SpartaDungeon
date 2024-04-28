@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon.Models
 {
-    // 플레이어 정보    
+    // 플레이어 정보        
     public class Player
     {
         #region Field
@@ -25,6 +25,7 @@ namespace SpartaDungeon.Models
         private ItemType _equipFlag;
         #endregion
 
+        
         public Player(string name, Class playerClass)
         {
             Name = name;
@@ -39,7 +40,7 @@ namespace SpartaDungeon.Models
             Gold = 1500;
             _gearList = new List<Gear>();
             _equipFlag = 0;
-        }
+        }       
 
         #region ProPerties
         public string Name
@@ -87,12 +88,14 @@ namespace SpartaDungeon.Models
             private set { _playerClass = value; }
         }
 
+        [JsonIgnore]
         public float ATK
         {
             get { return _attack; }
             set { _attack = value; }
         }
 
+        [JsonIgnore]
         public float DEF
         {
             get { return _defence; }
@@ -104,7 +107,7 @@ namespace SpartaDungeon.Models
         {
             get { return _atkOfGears; }
             private set 
-            {   
+            {
                 ATK += value - ATKOfGears;
                 _atkOfGears = value;
             }
@@ -220,31 +223,7 @@ namespace SpartaDungeon.Models
                 ATKOfGears += -gear.ATK;
                 DEFOfGears += -gear.DEF;
             }
-        }       
-
-        public void LoadGear(List<Gear> Gears)
-        {
-            for (int i = 0; i < GearList.Count; i++)
-            {
-                Gear gear = GearList[i];
-                if (gear.IsEquip)
-                {
-                    EquipItem(i);
-                }
-            }
-
-            GearList = Gears;
-
-            for (int i = 0; i < Gears.Count; i++)
-            {
-                Gear gear = Gears[i];
-                if (gear.IsEquip)
-                {
-                    CalcEquipmentStatus(gear);
-                    EquipFlag ^= gear.GearType;
-                }
-            }
-        }
+        }               
         #endregion
     }
 }

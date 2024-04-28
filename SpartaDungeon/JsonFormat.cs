@@ -9,10 +9,7 @@ namespace SpartaDungeon
 {
     public class JsonFormat
     {
-        public Player Player { get; set; }
-        public List<Gear> Gears { get; set; }
+        public Player Player { get; set; }        
         public List<Goods> Goods { get; set; }
-
-        public int Flag { get; set; }
     }
 }

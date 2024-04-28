@@ -53,8 +53,7 @@ namespace SpartaDungeon
         {
             JsonFormat json = new JsonFormat();
             json.Player = player;            
-            json.Goods = goodsList; 
-            json.Gears = player.CopyGearList();
+            json.Goods = goodsList;             
             string fileName = "../../../Resource/SaveFile.json";
             string jsonString = JsonConvert.SerializeObject(json);
             File.WriteAllText(fileName, jsonString);
@@ -66,11 +65,9 @@ namespace SpartaDungeon
             string jsonString = File.ReadAllText(fileName);
             JObject jobj = JObject.Parse(jsonString);
             //JsonFormat json = JsonSerializer.Deserialize<JsonFormat>(jsonString);
-
+                        
             player = JsonConvert.DeserializeObject<Player>(jobj["Player"].ToString());
-            goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());            
-            List<Gear> gears = JsonConvert.DeserializeObject<List<Gear>>(jobj["Gears"].ToString());
-            //player.LoadGear(gears);
+            goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());
         }        
 
         public void StartGame()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,17 @@ namespace SpartaDungeon.Models
     {
         private bool _isEquip;
 
-        public Gear(Item item) : base(item)
+        [JsonConstructor]
+        public Gear(string name, float atk, float def, string info, int price, ItemType itemType) : base(name, atk, def, info, price, itemType)
         {
             IsEquip = false;
         }
 
+        public Gear(Item item) : base(item)
+        {
+            IsEquip = false;
+        }
+        
         public bool IsEquip
         {
             get { return _isEquip; }

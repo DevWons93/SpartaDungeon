@@ -19,6 +19,7 @@ namespace SpartaDungeon.Models
         private ItemType _gearType;
         #endregion
 
+        [JsonConstructor]
         public Item(string name, float atk, float def, string info, int price, ItemType itemType)
         {
             Name = name;
@@ -28,7 +29,7 @@ namespace SpartaDungeon.Models
             Price = price;
             GearType = itemType;
         }
-
+                
         public Item(Item item)
         {
             this.Name = item.Name;
@@ -39,13 +40,13 @@ namespace SpartaDungeon.Models
             this.GearType = item.GearType;
         }
 
-        #region Properties
+        #region Properties        
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
-
+                
         public float ATK
         {
             get { return _attack; }

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpartaDungeon
+namespace SpartaDungeon.Models
 {
     // 플레이어가 장착한 장비의 클래스
     public class Gear : Item
     {
         private bool _isEquip;
 
-        public Gear(string name, float atk, float def, string info, int price,ItemType itemType) : base(name, atk, def, info, price,itemType)
+        public Gear(Item item) : base(item)
         {
-            this.IsEquip = false;
+            IsEquip = false;
         }
 
         public bool IsEquip

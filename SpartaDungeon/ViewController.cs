@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using SpartaDungeon.Models;
 
 namespace SpartaDungeon
 {
@@ -65,11 +66,9 @@ namespace SpartaDungeon
             Console.Clear();
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
             Console.WriteLine($"LV. {player.Level}");
-            Console.WriteLine($"{player.Name} ( {player.PlayerClass} )");
-            str = (player.ATKOfGears > 0) ? "(+" + player.ATKOfGears.ToString() + ")" : " ";
-            Console.WriteLine($"공격력 : {player.ATK + player.ATKOfGears} " + str);
-            str = (player.DEFOfGears > 0) ? "(+" + player.DEFOfGears.ToString() + ")" : " ";
-            Console.WriteLine($"방어력 : {player.DEF + player.DEFOfGears} " + str);
+            Console.WriteLine($"{player.Name} ( {player.PlayerClass} )");            
+            Console.WriteLine($"공격력 : {player.ATK} {(player.ATKOfGears > 0 ? $"(+{player.ATKOfGears})" : "")}" );            
+            Console.WriteLine($"방어력 : {player.DEF} {(player.DEFOfGears > 0 ? $"(+{player.DEFOfGears})" : "")}" );
             Console.WriteLine($"체  력 : {player.HP}");
             Console.WriteLine($"Gold   : {player.Gold}");
             Console.WriteLine("\r\n0. 나가기\n");
@@ -105,7 +104,7 @@ namespace SpartaDungeon
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기\n");
-            this.cursurPoint = 6 + player.GearCount();
+            this.cursurPoint = 6 + player.GearList.Count;
         }
 
         public void ViewShopMenu(Player player, List<Goods> goods)
@@ -132,7 +131,7 @@ namespace SpartaDungeon
             Console.WriteLine("1. 아이템 구매");
             Console.WriteLine("2. 아이템 판매");
             Console.WriteLine("0. 나가기\n");
-            this.cursurPoint = 11 + goods.Count();
+            this.cursurPoint = 11 + goods.Count;
         }
 
         public void ViewBuyItem(Player player, List<Goods> goods)
@@ -181,7 +180,7 @@ namespace SpartaDungeon
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기\n");
-            this.cursurPoint = 9 + player.GearCount();
+            this.cursurPoint = 9 + player.GearList.Count;
         }
 
         public void ViewDungeonMenu(List<Dungeon> dungeons)

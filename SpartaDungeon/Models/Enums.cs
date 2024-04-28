@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpartaDungeon
+namespace SpartaDungeon.Models
 {
     // 직업 종류 열거형    
     public enum Class
@@ -26,7 +26,7 @@ namespace SpartaDungeon
         Armor = 1 << 1,
         Boots = 1 << 2
     }
-        
+
     public enum MessageType
     {
         Normal,

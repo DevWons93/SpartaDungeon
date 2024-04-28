@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using SpartaDungeon.Models;
 
 namespace SpartaDungeon
 {
@@ -51,8 +52,7 @@ namespace SpartaDungeon
         public void SaveData()
         {
             JsonFormat json = new JsonFormat();
-            json.Player = player;
-            json.Flag = player.GetFlag();
+            json.Player = player;            
             json.Goods = goodsList; 
             json.Gears = player.CopyGearList();
             string fileName = "../../../Resource/SaveFile.json";
@@ -70,7 +70,7 @@ namespace SpartaDungeon
             player = JsonConvert.DeserializeObject<Player>(jobj["Player"].ToString());
             goodsList = JsonConvert.DeserializeObject<List<Goods>>(jobj["Goods"].ToString());            
             List<Gear> gears = JsonConvert.DeserializeObject<List<Gear>>(jobj["Gears"].ToString());
-            player.LoadGear(gears);
+            //player.LoadGear(gears);
         }        
 
         public void StartGame()
@@ -176,7 +176,7 @@ namespace SpartaDungeon
                 keyInput = vc.ViewSelectMenu(message);
 
                 if (keyInput == 0) return;
-                for (int i = 0; i < player.GearCount(); i++)
+                for (int i = 0; i < player.GearList.Count; i++)
                 {
                     if (keyInput == i + 1)
                     {
@@ -281,7 +281,7 @@ namespace SpartaDungeon
 
                 if (keyInput == 0) return;
                 
-                for (int i = 0; i < player.GearCount(); i++)
+                for (int i = 0; i < player.GearList.Count; i++)
                 {   
                     if (keyInput == i + 1)
                     {

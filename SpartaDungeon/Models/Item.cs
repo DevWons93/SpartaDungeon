@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpartaDungeon
+namespace SpartaDungeon.Models
 {
     // 아이템 정보
     public class Item
@@ -19,22 +19,24 @@ namespace SpartaDungeon
         private ItemType _gearType;
         #endregion
 
-        public Item(string name, float atk, float def, string info, ItemType itemType)
-        {
-            this.Name = name;
-            this.ATK = atk;
-            this.DEF = def;
-            this.Info = info;
-            this.GearType = itemType;
-        }
         public Item(string name, float atk, float def, string info, int price, ItemType itemType)
         {
-            this.Name = name;
-            this.ATK = atk;
-            this.DEF = def;
-            this.Info = info;
-            this.Price = price;
-            this.GearType = itemType;
+            Name = name;
+            ATK = atk;
+            DEF = def;
+            Info = info;
+            Price = price;
+            GearType = itemType;
+        }
+
+        public Item(Item item)
+        {
+            this.Name = item.Name;
+            this.ATK = item.ATK;
+            this.DEF = item.DEF;
+            this.Info = item.Info;
+            this.Price = item.Price;
+            this.GearType = item.GearType;
         }
 
         #region Properties
